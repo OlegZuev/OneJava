@@ -17,8 +17,9 @@ public class Calculator{
 			System.out.print(num1*num2);
 		}
 		else if (mathoperation == '^'){
+			int numTemp = num1;
 			for (i = num2; i > 1; i--){
-				num1*=num1;
+				num1*=numTemp;
 			}
 			System.out.print(num1);
 		}
