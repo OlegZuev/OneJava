@@ -14,10 +14,10 @@ public class GuessNumber {
 
 	public boolean guess(int playerNumber) {
 		if (guessNumber < playerNumber) {
-			System.out.println("Ваше число больше угадываемого.");
+			System.out.println("Р’Р°С€Рµ С‡РёСЃР»Рѕ Р±РѕР»СЊС€Рµ СѓРіР°РґС‹РІР°РµРјРѕРіРѕ.");
 			return false;
 		} else if (guessNumber > playerNumber) {
-			System.out.println("Ваше число меньше угадываемого.");
+			System.out.println("Р’Р°С€Рµ С‡РёСЃР»Рѕ РјРµРЅСЊС€Рµ СѓРіР°РґС‹РІР°РµРјРѕРіРѕ.");
 			return false;
 		}
 		return true;
