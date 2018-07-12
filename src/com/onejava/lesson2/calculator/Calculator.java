@@ -33,7 +33,7 @@ public class Calculator {
                 result = (int) Math.pow(num1, num2);
                 break;
             case "%":
-                result = (int) Math.IEEEremainder(num1, num2);
+                result = num1 % num2;
                 break;
         }
     }

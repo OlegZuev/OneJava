@@ -10,7 +10,7 @@ import java.util.Scanner;
  * в конце игры выведите сообщение "Игрок " + имя + " угадал число " + число + " с " + номер + " попытки"
  * если игроки не угадали число за 10 попыток, то отобразите сообщение: "У " + имя + " закончились попытки"
  *
- * @version 1.2.1
+ * @version 1.3
  */
 
 public class GuessNumberTest {
@@ -18,10 +18,8 @@ public class GuessNumberTest {
         Scanner sc = new Scanner(System.in);
         Player pl1 = new Player();
         Player pl2 = new Player();
-        boolean result;
-        boolean winnerFirst = false;
-        boolean winnerSecond = false;
         GuessNumber guessN = new GuessNumber();
+        String temp;
         System.out.print("Первый игрок, введите имя: ");
         pl1.setName(sc.nextLine());
         System.out.print("Второй игрок, введите имя: ");
@@ -30,57 +28,35 @@ public class GuessNumberTest {
 
         while (true) {
             guessN.setGuessNumber();
-            result = false;
 
-            while (!result && pl1.getI() != 9) {
+            while (!guessN.isResult()) {
                 System.out.print(pl1.getName() + ", введите число: ");
                 pl1.setPlayerNumber(sc.nextInt());
-                result = guessN.guess(pl1.getPlayerNumber());
+                guessN.guess(pl1);
 
-                if (result) {
-                    winnerFirst = true;
+                if (guessN.isResult()) {
                     break;
                 }
 
                 System.out.print(pl2.getName() + ", введите число: ");
                 pl2.setPlayerNumber(sc.nextInt());
-                result = guessN.guess(pl2.getPlayerNumber());
-
-                if (result) {
-                    winnerSecond = true;
-                }
+                guessN.guess(pl2);
             }
 
-            System.out.print("Числа игрока " + pl1.getName() + ": ");
-            for (int k = 0; k <= pl1.getI(); k++) {
-                System.out.print(pl1.getPlayerNumber(k) + " ");
+            pl1.showNumbers();
+            pl2.showNumbers();
+            guessN.result(pl1, pl2);
+
+            System.out.print("Хотите продолжить? [да/нет]: ");
+            temp = sc.next();
+            while (!(temp.equals("нет") || temp.equals("да"))) {
+                System.out.print("Вы ввели некорректный ответ. Поробуйте ещё раз [да/нет]: ");
+                temp = sc.next();
             }
 
-            System.out.print("\n" + "Числа игрока " + pl2.getName() + ": ");
-            for (int k = 0; k <= pl2.getI(); k++) {
-                System.out.print(pl2.getPlayerNumber(k) + " ");
-            }
-
-            if (winnerFirst) {
-                System.out.print("\n" +"Игрок " + pl1.getName() + " угадал число " + guessN.getGuessNumber() + " с " +
-                                   (pl1.getI() + 1) + " попытки." + "\n" +
-                                   "Хотите продолжить? [да/нет]: ");
-            } else if (winnerSecond) {
-                System.out.print("\n" +"Игрок " + pl2.getName() + " угадал число " + guessN.getGuessNumber() + " с " +
-                                   (pl2.getI() + 1) + " попытки." + "\n" +
-                                   "Хотите продолжить? [да/нет]: ");
-            } else {
-                System.out.print("\n" + pl1.getName() + " и " + pl2.getName() + ", у вас закончились попытки." + "\n" +
-                                   "Хотите продолжить? [да/нет]: ");
-            }
-
-            if (sc.next().equals("нет")) {
+            if (temp.equals("нет")) {
                 break;
             }
-            pl1.reset();
-            pl2.reset();
-            winnerFirst = false;
-            winnerSecond = false;
         }
     }
 }
