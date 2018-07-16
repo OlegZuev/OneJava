@@ -10,20 +10,18 @@ import java.util.Scanner;
  * в конце игры выведите сообщение "Игрок " + имя + " угадал число " + число + " с " + номер + " попытки"
  * если игроки не угадали число за 10 попыток, то отобразите сообщение: "У " + имя + " закончились попытки"
  *
- * @version 1.3
+ * @version 1.3.1
  */
 
 public class GuessNumberTest {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        Player pl1 = new Player();
-        Player pl2 = new Player();
+        System.out.print("Первый игрок, введите имя: ");
+        Player pl1 = new Player(sc.nextLine());
+        System.out.print("Второй игрок, введите имя: ");
+        Player pl2 = new Player(sc.nextLine());
         GuessNumber guessN = new GuessNumber();
         String temp;
-        System.out.print("Первый игрок, введите имя: ");
-        pl1.setName(sc.nextLine());
-        System.out.print("Второй игрок, введите имя: ");
-        pl2.setName(sc.nextLine());
         System.out.println("У вас 10 попыток.");
 
         while (true) {

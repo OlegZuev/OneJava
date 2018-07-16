@@ -1,17 +1,19 @@
 package com.onejava.lesson2.guessinggame;
 
 public class Player {
-    private int[] playerNumber = new int[10];
-    private int i = -1;
+    private int[] playerNumber;
+    private int i;
     private String name;
     private boolean winner;
 
-    public int getPlayerNumber() {
-        return playerNumber[i];
+    public Player(String name) {
+        playerNumber = new int[10];
+        i = -1;
+        this.name = name;
     }
 
-    public int getPlayerNumber(int k) {
-        return playerNumber[k];
+    public int getPlayerNumber() {
+        return playerNumber[i];
     }
 
     public void setPlayerNumber(int playerNumber) {
@@ -25,10 +27,6 @@ public class Player {
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public boolean isWinner() {

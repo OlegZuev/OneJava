@@ -45,5 +45,7 @@ public class GuessNumber {
         } else {
             System.out.println(pl1.getName() + " и " + pl2.getName() + ", у вас закончились попытки.");
         }
+        pl1.reset();
+        pl2.reset();
     }
 }
