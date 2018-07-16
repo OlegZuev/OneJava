@@ -1,28 +1,34 @@
 package com.onejava.lesson2.guessinggame;
 
 public class Player {
-    private int[] playerNumber;
-    private int i;
+    private int[] playerNumber = new int[10];
+    private int counter = -1;
     private String name;
     private boolean winner;
 
     public Player(String name) {
-        playerNumber = new int[10];
-        i = -1;
         this.name = name;
     }
 
+    public boolean isAttempts() {
+        return counter < 9;
+    }
+
     public int getPlayerNumber() {
+        return playerNumber[counter];
+    }
+
+    public int getPlayerNumber(int i) {
         return playerNumber[i];
     }
 
     public void setPlayerNumber(int playerNumber) {
-        i++;
-        this.playerNumber[i] = playerNumber;
+        counter++;
+        this.playerNumber[counter] = playerNumber;
     }
 
-    public int getI() {
-        return i;
+    public int getCounter() {
+        return counter;
     }
 
     public String getName() {
@@ -39,15 +45,7 @@ public class Player {
 
     public void reset() {
         playerNumber = new int[10];
-        i = -1;
+        counter = -1;
         winner = false;
-    }
-
-    public void showNumbers() {
-        System.out.print("Числа игрока " + name + ": ");
-        for (int k = 0; k <= i; k++) {
-            System.out.print(playerNumber[k] + " ");
-        }
-        System.out.println();
     }
 }
