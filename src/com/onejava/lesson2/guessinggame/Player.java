@@ -4,7 +4,6 @@ public class Player {
     private int[] playerNumber = new int[10];
     private int counter = -1;
     private String name;
-    private boolean winner;
 
     public Player(String name) {
         this.name = name;
@@ -35,17 +34,8 @@ public class Player {
         return name;
     }
 
-    public boolean isWinner() {
-        return winner;
-    }
-
-    public void setWinner(boolean winner) {
-        this.winner = winner;
-    }
-
     public void reset() {
         playerNumber = new int[10];
         counter = -1;
-        winner = false;
     }
 }
