@@ -16,29 +16,27 @@ public class GuessNumber {
     }
 
     public void start() {
-        setGuessNumber();
-        while (!winnerExist) { //Процесс угадывания с проверкой победителя
+        guessNumber = new Random().nextInt(100);
+        System.out.println(guessNumber);
+        while (!winnerExist) { //Процесс угадывания с проверкой наличия победителя
             guess(pl1);
-            if (winnerExist) {
-                break;
-            }
             guess(pl2);
             if (!pl1.isAttempts() && !pl2.isAttempts()) {
                 break;
             }
         }
-
-        //Если последующая часть кода исполняется, победителя нет - у игроков кончилиь попытки
+        showNumbers(pl1);
+        showNumbers(pl2);
+        if (pl1.isWinner()) {
+            result(pl1);
+        }
+        if (pl2.isWinner()) {
+            result(pl2);
+        }
         if (!winnerExist) {
-            showNumbers(pl1);
-            showNumbers(pl2);
             result();
         }
         reset();
-    }
-
-    public void setGuessNumber() {
-        guessNumber = new Random().nextInt(100);
     }
 
     public void guess(Player pl) {
@@ -51,9 +49,7 @@ public class GuessNumber {
                 System.out.println("Ваше число меньше угадываемого.");
             } else {
                 winnerExist = true;
-                showNumbers(pl1);
-                showNumbers(pl2);
-                result(pl);
+                pl.setWinner(true);
             }
         }
     }
