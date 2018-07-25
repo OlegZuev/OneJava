@@ -20,7 +20,7 @@ public class MergeSort {
     }
 
     public static void mergeSort(int[] array, int start, int end) {
-        if (start >= end) {
+        if (array.length == 0 || start >= end) {
             return;
         }
 
