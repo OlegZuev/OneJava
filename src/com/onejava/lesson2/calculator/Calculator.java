@@ -18,13 +18,13 @@ public class Calculator {
 
         switch (mathExpression[1]) {
             case "+":
-                result = num1 + num2;
+                result = Math.addExact(num1, num2);
                 break;
             case "-":
                 result = Math.subtractExact(num1, num2);
                 break;
             case "/":
-                result = num1 / num2;
+                result = Math.floorDiv(num1, num2);
                 break;
             case "*":
                 result = Math.multiplyExact(num1, num2);
@@ -33,7 +33,7 @@ public class Calculator {
                 result = (int) Math.pow(num1, num2);
                 break;
             case "%":
-                result = num1 % num2;
+                result = Math.floorMod(num1, num2);
                 break;
         }
     }
