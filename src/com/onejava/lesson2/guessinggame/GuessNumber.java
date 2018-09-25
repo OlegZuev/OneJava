@@ -10,14 +10,8 @@ public class GuessNumber {
     private Player pl2;
     private Scanner sc = new Scanner(System.in);
 
-    public GuessNumber(Player pl1, Player pl2) {
-        this.pl1 = pl1;
-        this.pl2 = pl2;
-    }
-
     public void start() {
         guessNumber = new Random().nextInt(100);
-        System.out.println(guessNumber);
         while (!winnerExist) { //Процесс угадывания с проверкой наличия победителя
             guess(pl1);
             guess(pl2);
@@ -37,9 +31,10 @@ public class GuessNumber {
             result();
         }
         reset();
+        repeat();
     }
 
-    public void guess(Player pl) {
+    private void guess(Player pl) {
         if (pl.isAttempts()) {
             inputPlayerNumber(pl);
             int tempPlayerNumber = pl.getPlayerNumber();
@@ -54,16 +49,16 @@ public class GuessNumber {
         }
     }
 
-    public void result() {
+    private void result() {
         System.out.println("У игроков кончились попытки.");
     }
 
-    public void result(Player pl) {
+    private void result(Player pl) {
         System.out.println("Игрок " + pl.getName() + " угадал число " + guessNumber + " с " +
                 (pl.getCounter() + 1) + " попытки.");
     }
 
-    public void showNumbers(Player pl) {
+    private void showNumbers(Player pl) {
         System.out.print("Числа игрока " + pl.getName() + ": ");
         for (int k = 0; k <= pl.getCounter(); k++) {
             System.out.print(pl.getPlayerNumber(k) + " ");
@@ -71,14 +66,33 @@ public class GuessNumber {
         System.out.println();
     }
 
-    public void inputPlayerNumber(Player pl) {
+    private void inputPlayerNumber(Player pl) {
         System.out.print(pl.getName() + ", введите число: ");
         pl.setPlayerNumber(sc.nextInt());
     }
 
-    public void reset() {
+    private void reset() {
         winnerExist = false;
         pl1.reset();
         pl2.reset();
+    }
+    public void initialize() {
+        System.out.print("Первый игрок, введите имя: ");
+        pl1 = new Player(sc.nextLine());
+        System.out.print("Второй игрок, введите имя: ");
+        pl2 = new Player(sc.nextLine());
+        System.out.println("У вас 10 попыток.");
+    }
+
+    private void repeat() {
+        System.out.print("Хотите продолжить? [да/нет]: ");
+        String temp = sc.next();
+        while (!(temp.equals("нет") || temp.equals("да"))) {
+            System.out.print("Вы ввели некорректный ответ. Поробуйте ещё раз [да/нет]: ");
+            temp = sc.next();
+        }
+        if (temp.equals("да")) {
+            start();
+        }
     }
 }
